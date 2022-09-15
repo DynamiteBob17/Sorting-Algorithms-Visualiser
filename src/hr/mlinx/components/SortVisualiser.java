@@ -23,7 +23,7 @@ public class SortVisualiser extends JPanel {
 	
 	private static final int DEFAULT_SLEEP = 2;
 	private static final double INITIAL_MINIMIZED_RATIO = 0.8;
-	private static final Color ENDGROUND_COLOR = new Color(25, 25, 25);
+	private static final Color BACKGROUND_COLOR = new Color(25, 25, 25);
 	
 	private int[] array;
 	private double sleep;
@@ -39,7 +39,7 @@ public class SortVisualiser extends JPanel {
 		super();
 		
 		Util.setUIPresets();
-		setBackground(ENDGROUND_COLOR);
+		setBackground(BACKGROUND_COLOR);
 		setPreferredSize(new Dimension((int) (Util.RES.width * INITIAL_MINIMIZED_RATIO),
 									   (int) (Util.RES.height * INITIAL_MINIMIZED_RATIO)));
 		

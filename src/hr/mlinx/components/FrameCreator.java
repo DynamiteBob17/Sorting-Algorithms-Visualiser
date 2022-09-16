@@ -51,7 +51,7 @@ public class FrameCreator {
 				+ "H - bring up this message window,\n\r"
 				+ "M - mute/unmute sound\n\r"
 				+ "L - lock/unlock array size\n\r"
-				+ "SHIFT/CONTROL - increase/decrease array size\n\r"
+				+ "1/2 - decrease/increase array size\n\r"
 				+ "BACKSPACE - directly input array size\n\r"
 				+ "SPACE - sort,\n\r"
 				+ "ENTER - directly input value of \"SLEEP\",\n\r"

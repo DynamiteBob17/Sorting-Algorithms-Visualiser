@@ -106,10 +106,10 @@ public class KeyInput extends KeyAdapter {
 			}
 			
 			if (!tp.sizeLocked()) {
-				if (key == KeyEvent.VK_SHIFT) {
+				if (key == KeyEvent.VK_2) {
 					if ((int) tp.getSizeSpinner().getValue() < Visual.INPUT_MAX_SIZE)
 						tp.getSizeSpinner().setValue((int) tp.getSizeSpinner().getValue() + 1);
-				} else if (key == KeyEvent.VK_CONTROL) {
+				} else if (key == KeyEvent.VK_1) {
 					if ((int) tp.getSizeSpinner().getValue() > 1)
 						tp.getSizeSpinner().setValue((int) tp.getSizeSpinner().getValue() - 1);
 				} else if (key == KeyEvent.VK_BACK_SPACE) {
@@ -129,7 +129,7 @@ public class KeyInput extends KeyAdapter {
 					}
 				}
 			}
-		} else if (tp.sizeLocked()) {
+		} else {
 			if (key == KeyEvent.VK_A) {
 				new Thread(() -> {
 					tp.getLeftButton().doClick();

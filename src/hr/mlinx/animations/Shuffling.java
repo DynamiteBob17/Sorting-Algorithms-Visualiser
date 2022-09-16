@@ -13,7 +13,7 @@ public class Shuffling extends Animation {
 
 	@Override
 	public void run() {
-		int len = sv.getVc().get().getSortSize();
+		int len = sv.getVisualController().getCurrentVisual().getSortSize();
 		for (int i = 0; i < len; ++i) {
 			int rand = Util.R.nextInt(len);
 			int temp = sv.getArray()[i];

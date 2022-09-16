@@ -19,7 +19,7 @@ public class Sorting extends Animation {
 	public void run() {
 		sv.getStats().resetStats();
 		
-		sv.getSorts()[tp.getAlgoBox().getSelectedIndex()].setLen(sv.getVc().get().getSortSize());
+		sv.getSorts()[tp.getAlgoBox().getSelectedIndex()].setLen(sv.getVisualController().getCurrentVisual().getSortSize());
 		sv.getSorts()[tp.getAlgoBox().getSelectedIndex()].sort();
 		
 		sv.finishAnimation();
@@ -35,15 +35,15 @@ public class Sorting extends Animation {
 	
 	private void confirm() {
 		confirmIdx = 0;
-		sv.getVc().get().setColorSubtractionStep(0);
+		sv.getVisualController().getCurrentVisual().setColorSubtractionStep(0);
 		
-		for (int i = 0; i < sv.getVc().get().getSortSize(); ++i) {
+		for (int i = 0; i < sv.getVisualController().getCurrentVisual().getSortSize(); ++i) {
 			confirmIdx = i;
 			sv.highlight(i);
 		}
 		
 		confirmIdx = -1;
-		sv.getVc().get().setColorSubtractionStep(Visual.DEFAULT_COLOR_SUBTRACTION_STEP);
+		sv.getVisualController().getCurrentVisual().setColorSubtractionStep(Visual.DEFAULT_COLOR_SUBTRACTION_STEP);
 		sv.finishAnimation();
 	}
 	

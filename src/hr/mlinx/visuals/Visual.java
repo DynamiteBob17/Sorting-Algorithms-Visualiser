@@ -59,7 +59,7 @@ public abstract class Visual {
 			}
 			tp.getSizeSpinner().setValue(sortSize);
 		} else {
-			sortSize = sv.getVc().getLockedSize();
+			sortSize = sv.getVisualController().getLockedSize();
 			if (tp.getAlgoBox().getSelectedItem().equals("Bitonic Sort")) {
 				if (sortSize > BarGraph.BITONIC_SIZE) 
 					sortSize = BarGraph.BITONIC_SIZE;

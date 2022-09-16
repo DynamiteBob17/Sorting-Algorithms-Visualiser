@@ -64,7 +64,7 @@ public class Stats {
 						+ " of " + sv.getSorts().length + ")"), 
 				10f, 
 				tp.getHeight() / 2f);
-		g2.drawString("Array Size: " + Integer.toString(sv.getVc().get().getSortSize()), 
+		g2.drawString("Array Size: " + Integer.toString(sv.getVisualController().getCurrentVisual().getSortSize()), 
 				10f, 
 				tp.getHeight() / 2f + g2.getFont().getSize());
 		g2.drawString("Swaps: " + Integer.toString(swaps), 

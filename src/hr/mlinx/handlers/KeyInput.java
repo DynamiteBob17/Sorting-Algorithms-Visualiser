@@ -120,7 +120,7 @@ public class KeyInput extends KeyAdapter {
 							    + " - " 
 							    + Visual.INPUT_MAX_SIZE
 							    +"): ", 
-							    (int) sv.getVc().get().getSortSize()));
+							    (int) sv.getVisualController().getCurrentVisual().getSortSize()));
 						if (len >= 1 && len <= Visual.INPUT_MAX_SIZE) {
 							tp.getSizeSpinner().setValue(len);
 							tp.updateForSizeSpinner();

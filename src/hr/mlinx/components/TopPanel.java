@@ -50,7 +50,7 @@ public class TopPanel extends MyPanel {
 						 			 lockedIcon :
 						 		     unlockedIcon);
 		leftButton = new JButton("<");
-		modeLabel = new JLabel(sv.getVc().get().getName(), SwingConstants.CENTER);
+		modeLabel = new JLabel(sv.getVisualController().getCurrentVisual().getName(), SwingConstants.CENTER);
 		rightButton = new JButton(">");
 		watchButton = new JButton("WATCH");
 		
@@ -59,11 +59,11 @@ public class TopPanel extends MyPanel {
 			sorts[i] = sv.getSorts()[i].getName();
 		}
 		algoBox.setModel(new DefaultComboBoxModel<String>(sorts));
-		sizeSpinner.setModel(new SpinnerNumberModel(sv.getVc().get().getSortSize(), 1, 
+		sizeSpinner.setModel(new SpinnerNumberModel(sv.getVisualController().getCurrentVisual().getSortSize(), 1, 
 				  Visual.INPUT_MAX_SIZE, 1));
 		
 		algoBox.addActionListener(e -> {
-			sv.getVc().changeVals();
+			sv.getVisualController().changeVals();
 			sv.reset();
 		});
 		sizeSpinner.addChangeListener(e -> {
@@ -78,19 +78,19 @@ public class TopPanel extends MyPanel {
 				sizeLocked = true;
 				lockSizeButton.setIcon(lockedIcon);
 				sizeSpinner.setEnabled(false);
-				sv.getVc().setLockedSize();
+				sv.getVisualController().setLockedSize();
 			}
 		});
 		leftButton.addActionListener(e -> {
-			sv.getVc().previous();
-			modeLabel.setText(sv.getVc().get().getName());
-			sv.getVc().changeVals();
+			sv.getVisualController().previous();
+			modeLabel.setText(sv.getVisualController().getCurrentVisual().getName());
+			sv.getVisualController().changeVals();
 			sv.reset();
 		});
 		rightButton.addActionListener(e -> {
-			sv.getVc().next();
-			modeLabel.setText(sv.getVc().get().getName());
-			sv.getVc().changeVals();
+			sv.getVisualController().next();
+			modeLabel.setText(sv.getVisualController().getCurrentVisual().getName());
+			sv.getVisualController().changeVals();
 			sv.reset();
 		});
 		watchButton.addActionListener(e -> {
@@ -137,26 +137,22 @@ public class TopPanel extends MyPanel {
 	
 	public void updateForSizeSpinner() {
 		int val = (int) sizeSpinner.getValue();
-		int size = sv.getVc().get().getSortSize();
+		int size = sv.getVisualController().getCurrentVisual().getSortSize();
 		if (algoBox.getSelectedItem().equals("Bitonic Sort")) {
 			if (size <= BarGraph.BITONIC_SIZE) {
 				if (val > size && size < BarGraph.BITONIC_SIZE) {
 					val = size * 2;
-					sv.getVc().get().setSortSize(val);
-					sizeSpinner.setValue(val);
 				} else if (size > val) {
 					val = size / 2;
-					sv.getVc().get().setSortSize(val);
-					sizeSpinner.setValue(val);
 				} else {
 					val = size;
 				}
-				sv.getVc().get().setSortSize(val);
+				sv.getVisualController().getCurrentVisual().setSortSize(val);
 				sizeSpinner.setValue(val);
 				sv.reset();
 			}
 		} else {
-			sv.getVc().get().setSortSize(val);
+			sv.getVisualController().getCurrentVisual().setSortSize(val);
 			sv.reset();
 		}
 	}

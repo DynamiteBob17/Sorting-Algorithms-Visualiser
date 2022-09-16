@@ -59,7 +59,7 @@ public class SortVisualiser extends JPanel {
 							new ComponentAdapter() {
 			   					@Override
 			   					public void componentResized(ComponentEvent e) {
-			   						visualController.get().setOtherSizes();
+			   						visualController.getCurrentVisual().setOtherSizes();
 			   					}
 							}
 		);
@@ -99,19 +99,19 @@ public class SortVisualiser extends JPanel {
 		if (visualController.getIdx() == 0) { // 0 should be barGraph
 			if (animator.getSorting().isAlive()) {
 				if (animator.getSorting().getConfirmIdx() == -1) {
-					visualController.get().setGreen(idx,  Visual.BAR_COLOR_INTENSITY); // red
-					visualController.get().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
+					visualController.getCurrentVisual().setGreen(idx,  Visual.BAR_COLOR_INTENSITY); // red
+					visualController.getCurrentVisual().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
 				} else {
-					visualController.get().setRed(idx,  Visual.BAR_COLOR_INTENSITY); // green
-					visualController.get().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
+					visualController.getCurrentVisual().setRed(idx,  Visual.BAR_COLOR_INTENSITY); // green
+					visualController.getCurrentVisual().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
 				}
 			} else if (animator.getShuffling().isAlive()) { // blue
-				visualController.get().setRed(idx,  Visual.BAR_COLOR_INTENSITY);
-				visualController.get().setGreen(idx, Visual.BAR_COLOR_INTENSITY);
+				visualController.getCurrentVisual().setRed(idx,  Visual.BAR_COLOR_INTENSITY);
+				visualController.getCurrentVisual().setGreen(idx, Visual.BAR_COLOR_INTENSITY);
 			}
 		}
 		
-		soundPlayer.play(idx, visualController.get().getSortSize());
+		soundPlayer.play(idx, visualController.getCurrentVisual().getSortSize());
 		update(sleep);
 	}
 	
@@ -139,7 +139,7 @@ public class SortVisualiser extends JPanel {
 			validateArray();
 		}
 		
-		visualController.get().setOtherSizes();
+		visualController.getCurrentVisual().setOtherSizes();
 		
 		if (!topPanel.sizeLocked()) {
 			fillArray();
@@ -151,7 +151,7 @@ public class SortVisualiser extends JPanel {
 	}
 	
 	private void validateArray() {
-		int maxValue = visualController.get().getSortSize() - 1;
+		int maxValue = visualController.getCurrentVisual().getSortSize() - 1;
 		
 		for (int i = 0; i < array.length; ++i) {
 			if (array[i] > maxValue) {
@@ -187,7 +187,7 @@ public class SortVisualiser extends JPanel {
 		return animator;
 	}
 	
-	public VisualController getVc() {
+	public VisualController getVisualController() {
 		return visualController;
 	}
 	

@@ -64,11 +64,11 @@ public class WeaveMergeSort extends SortingAlgorithm {
 	private void setSingle(int idx, int value) {
 		array[idx] = value;
 		
-		if (sv.getVc().getIdx() == 0) {
-			sv.getVc().get().setGreen(idx,  Visual.BAR_COLOR_INTENSITY);
-			sv.getVc().get().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
+		if (sv.getVisualController().getIdx() == 0) {
+			sv.getVisualController().getCurrentVisual().setGreen(idx,  Visual.BAR_COLOR_INTENSITY);
+			sv.getVisualController().getCurrentVisual().setBlue(idx,  Visual.BAR_COLOR_INTENSITY);
 		}
-		sv.getSoundPlayer().play(idx, sv.getVc().get().getSortSize());
+		sv.getSoundPlayer().play(idx, sv.getVisualController().getCurrentVisual().getSortSize());
 	}
 	
 	private void weaveMergeSort(int min, int max) {

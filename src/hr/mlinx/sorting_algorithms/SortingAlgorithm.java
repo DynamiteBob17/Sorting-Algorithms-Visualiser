@@ -15,7 +15,7 @@ public abstract class SortingAlgorithm {
 		
 		this.sv = sv;
 		this.array = sv.getArray();
-		this.len = sv.getVc().get().getSortSize();
+		this.len = sv.getVisualController().getCurrentVisual().getSortSize();
 		this.stats = sv.getStats();
 	}
 	

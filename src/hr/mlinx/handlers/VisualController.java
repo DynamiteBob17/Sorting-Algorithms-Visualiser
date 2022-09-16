@@ -46,7 +46,7 @@ public class VisualController {
 		visuals.get(idx).visualise(g2);
 	}
 	
-	public Visual get() {
+	public Visual getCurrentVisual() {
 		return visuals.get(idx);
 	}
 	

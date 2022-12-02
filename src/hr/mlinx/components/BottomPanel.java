@@ -54,7 +54,9 @@ public class BottomPanel extends MyPanel {
 		
 		sleepSpinner.setModel(new SpinnerNumberModel(sv.getSleep(), SPINNER_MIN_VALUE, 
 				  SPINNER_MAX_VALUE, SPINNER_MIN_VALUE));
-		midiBox.setModel(new DefaultComboBoxModel<String>(sv.getSoundPlayer().getSounds()));
+		
+		String[] sounds = sv.getSoundPlayer().getSounds();
+		midiBox.setModel(new DefaultComboBoxModel<String>(sounds == null ? new String[] {"sounds unavailable"} : sounds));
 		
 		shuffleButton.addActionListener(e -> {
 			sv.getAnimator().shuffle();

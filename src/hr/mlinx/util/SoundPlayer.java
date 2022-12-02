@@ -38,18 +38,24 @@ public class SoundPlayer {
 	}
 	
 	public void play(int idx, int arraySize) {
-		double noteRatio = (double) NOTE_RANGE / arraySize;
-		mc[0].noteOn((int) (idx * noteRatio), volume);
+		if (mc != null) {
+			double noteRatio = (double) NOTE_RANGE / arraySize;
+			mc[0].noteOn((int) (idx * noteRatio), volume);
+		}
 	}
 	
 	public void notesOff() {
-		for (int i = 0; i < NOTE_RANGE; ++i) {
-			mc[0].noteOff(i);
+		if (mc != null) {
+			for (int i = 0; i < NOTE_RANGE; ++i) {
+				mc[0].noteOff(i);
+			}
 		}
 	}
 	
 	public void changeMidi(int midiIdx) {
-		mc[0].programChange(instruments[midiIdx].getPatch().getProgram());
+		if (mc != null) {
+			mc[0].programChange(instruments[midiIdx].getPatch().getProgram());
+		}
 	}
 	
 	public String[] getSounds() {

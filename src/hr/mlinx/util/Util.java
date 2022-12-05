@@ -95,4 +95,8 @@ public class Util {
 		};
 	}
 	
+	public static boolean isUnix() {
+		return System.getProperty("os.name").startsWith("Linux");
+	}
+	
 }

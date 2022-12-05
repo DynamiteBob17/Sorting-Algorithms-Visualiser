@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -35,6 +36,9 @@ public class SortVisualiser extends JPanel {
 	private BottomPanel bottomPanel;
 	private Animator animator;
 	
+	private boolean isUnix;
+	private Toolkit tk;
+	
 	public SortVisualiser() {
 		super();
 		
@@ -53,6 +57,8 @@ public class SortVisualiser extends JPanel {
 		soundPlayer = new SoundPlayer();
 		bottomPanel = new BottomPanel(this);
 		animator = new Animator(topPanel, this, bottomPanel);
+		isUnix = Util.isUnix();
+		if (isUnix) tk = Toolkit.getDefaultToolkit();
 		fillArray();
 		
 		FrameCreator.createFrame("Sorting Algorithm Visualiser", topPanel, this, bottomPanel,
@@ -80,6 +86,7 @@ public class SortVisualiser extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		visualController.visualise(g2);
 		stats.drawStats(g2, topPanel, this);
+		if (isUnix) tk.sync();
 	}
 	
 	public void update(double sleep) {
@@ -204,6 +211,10 @@ public class SortVisualiser extends JPanel {
 	}
 	
 	public static void main(String[] args) {
+		if (Util.isUnix()) {
+			System.setProperty("sun.java2d.opengl", "true");
+		}
+		
 		new SortVisualiser();
 	}
 	

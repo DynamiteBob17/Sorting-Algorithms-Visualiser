@@ -15,6 +15,7 @@ public class SoundPlayer {
 	private Instrument[] instruments;
 	private String[] sounds;
 	private int volume;
+	private int midiIdx;
 	
 	public SoundPlayer() {
 		super();
@@ -24,14 +25,21 @@ public class SoundPlayer {
 			midiSynth.open();
 			instruments = midiSynth.getAvailableInstruments();
 			mc = midiSynth.getChannels();
-			mc[0].programChange(instruments[0].getPatch().getProgram());
 			
 			volume = DEFAULT_VOLUME;
+			midiIdx = 0;
 			
 			sounds = new String[instruments.length];
+			String name;
 			for (int i = 0; i < instruments.length; ++i) {
-				sounds[i] = i + ". " + instruments[i].getName();
+				name = instruments[i].getName();
+				sounds[i] = i + ". " + name;
+				
+				if (name.toLowerCase().contains("808 tom")
+						|| midiIdx <= 0 && name.toLowerCase().contains("sine"))
+					midiIdx = i;
 			}
+			mc[0].programChange(instruments[midiIdx].getPatch().getProgram());
 		} catch (MidiUnavailableException e) {
 			e.printStackTrace();
 		}
@@ -54,8 +62,13 @@ public class SoundPlayer {
 	
 	public void changeMidi(int midiIdx) {
 		if (mc != null) {
+			this.midiIdx = midiIdx;
 			mc[0].programChange(instruments[midiIdx].getPatch().getProgram());
 		}
+	}
+	
+	public int getMidiIdx() {
+		return midiIdx;
 	}
 	
 	public String[] getSounds() {

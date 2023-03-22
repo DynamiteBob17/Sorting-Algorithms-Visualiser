@@ -57,6 +57,9 @@ public class BottomPanel extends MyPanel {
 		
 		String[] sounds = sv.getSoundPlayer().getSounds();
 		midiBox.setModel(new DefaultComboBoxModel<String>(sounds == null ? new String[] {"sounds unavailable"} : sounds));
+		int midiIdx = sv.getSoundPlayer().getMidiIdx();
+		if (midiIdx > 0)
+			midiBox.setSelectedIndex(midiIdx);
 		
 		shuffleButton.addActionListener(e -> {
 			sv.getAnimator().shuffle();
